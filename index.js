@@ -31,7 +31,7 @@ const con = mysql.createConnection({
   host: "172.17.0.1",
   port: "6520",
   user: "root",
-  password: "alunos@123",
+  password: "123@senac",
   database: "bancoloja",
 });
 // executar a conexão com o banco de dados
@@ -42,6 +42,7 @@ con.connect((erro) => {
     );
     return;
   }
+
   console.log(`Servidor de banco de dados conectado -> ${con.threadId}`);
 });
 
@@ -146,15 +147,6 @@ app.put("/api/usuarios/atualizar/:id", verificar, (req, res) => {
     }
   );
 });
-[req.body, req.params.id],
-  (erro, result) => {
-    if (erro) {
-      return res
-        .status(400)
-        .send({ output: `Erro ao tentar atualizar -> ${erro}` });
-    }
-    res.status(200).send({ output: `Dados atualizados`, payload: result });
-  };
 
 app.delete("/api/usuarios/apagar/:id", (req, res) => {
   con.query(
@@ -192,7 +184,7 @@ app.get("/api/usuarios/carrinho/:id", (req, res) => {
       if (erro) {
         return res
           .status(500)
-          .send({ output: `Erro ao tentar carregar o carrinho -> ${erro}` });
+          .send({ output: `Erro ao tentar carregar o carrinho ->${erro}` });
       }
       res.status(200).send({ output: result });
     }
